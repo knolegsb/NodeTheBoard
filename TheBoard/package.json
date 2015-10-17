@@ -8,9 +8,12 @@
     "email": "seon2you@hotmail.com"
   },
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "ejs": "^2.3.4",
     "ejs-locals": "^1.0.2",
     "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "express-sessions": "^1.0.5",
     "jade": "^1.11.0",
     "mongodb": "^2.0.46",
     "underscore": "^1.8.3",

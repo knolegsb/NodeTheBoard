@@ -11,7 +11,8 @@ var app = express();
 //var ejsEngine = require("ejs-locals");
 var controllers = require("./controllers");
 var bodyParser = require('body-parser');
-
+var flash = require("connect-flash");
+//var session = require('express-sessions');
 // Setup the View Engine
 //app.set("view engine", "jade");
 //app.engine("ejs", ejsEngine); // support master engine
@@ -22,6 +23,8 @@ app.set("view engine", "vash");
 //app.use(express.urlencoded());
 
 app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(express.session({ secret: "TheBoard" }));
+app.use(flash());
 
 // set the public static resource folder
 app.use(express.static(__dirname + "/public"));
