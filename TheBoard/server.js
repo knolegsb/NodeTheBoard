@@ -10,12 +10,18 @@ var express = require("express");
 var app = express();
 //var ejsEngine = require("ejs-locals");
 var controllers = require("./controllers");
+var bodyParser = require('body-parser');
 
 // Setup the View Engine
 //app.set("view engine", "jade");
 //app.engine("ejs", ejsEngine); // support master engine
 //app.set("view engine", "ejs"); // ejs view engine
 app.set("view engine", "vash");
+
+// Opt into Services
+//app.use(express.urlencoded());
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // set the public static resource folder
 app.use(express.static(__dirname + "/public"));
@@ -41,23 +47,23 @@ app.get("/api/users", function (req, res) {
 //    res.end();
 //});
 
-app.get("/api/sql", function (req, res) {
-    var mssql = require("msnodesql");
-    var connString = "Driver={SQL Server Native Client 11.0};Server=(LocalDB)\\MSSQLLocalDB;Database=Northwid;Trusted_Connection={Yes}";
+//app.get("/api/sql", function (req, res) {
+//    var mssql = require("msnodesql");
+//    var connString = "Driver={SQL Server Native Client 11.0};Server=(LocalDB)\\MSSQLLocalDB;Database=Northwid;Trusted_Connection={Yes}";
     
-    mssql.open(connString, function (err, conn){
-        if (err) {
-            console.log("Error");
-            return;
-        }
-        else {
-            console.log("Success");
-        }
-    })
-    //mssql.query(connString, "SELECT * FROM Customers WHERE CustomerID = 'ALFKI'", function (err, results) {
-    //    res.send(results);
-    //});
-});
+//    mssql.open(connString, function (err, conn){
+//        if (err) {
+//            console.log("Error");
+//            return;
+//        }
+//        else {
+//            console.log("Success");
+//        }
+//    })
+//    //mssql.query(connString, "SELECT * FROM Customers WHERE CustomerID = 'ALFKI'", function (err, results) {
+//    //    res.send(results);
+//    //});
+//});
 
 var server = http.createServer(app);
 server.listen(3000);

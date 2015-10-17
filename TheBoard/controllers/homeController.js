@@ -12,5 +12,9 @@
                 res.render("index", { title: "Express + Vash", error: err, categories: results });
             });
         });
+
+        app.post("/newCategory", function (req, res) {
+            var categoryName = req.body.categoryName;
+        });
     };
 })(module.exports);
