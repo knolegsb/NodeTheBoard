@@ -26,7 +26,7 @@ controllers.init(app);
 
 //app.get("/", function (req, res) {
     //res.send("<html><body><h1>Express</h1></body></html>");
-    //res.render("jade/index", { title: "Express + Jade" });
+    //res.render("jade/index", { title: "Express + Jade" });d
     //res.render("ejs/index", { title: "Express + EJS" });
     //res.render("index", {title: "Express + Vash"})
 //});
@@ -42,12 +42,21 @@ app.get("/api/users", function (req, res) {
 //});
 
 app.get("/api/sql", function (req, res) {
-    var msnodesql = require("msnodesql");
+    var mssql = require("msnodesql");
     var connString = "Driver={SQL Server Native Client 11.0};Server=(LocalDB)\\MSSQLLocalDB;Database=Northwid;Trusted_Connection={Yes}";
-
-    msnodesql.query(connString, "SELECT * FROM Customers WHERE CustomerID = 'ALFKI'", function (err, results) {
-        res.send(results);
-    });
+    
+    mssql.open(connString, function (err, conn){
+        if (err) {
+            console.log("Error");
+            return;
+        }
+        else {
+            console.log("Success");
+        }
+    })
+    //mssql.query(connString, "SELECT * FROM Customers WHERE CustomerID = 'ALFKI'", function (err, results) {
+    //    res.send(results);
+    //});
 });
 
 var server = http.createServer(app);
